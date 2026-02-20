@@ -22,14 +22,14 @@ namespace subsystems {
  * https://v6.docs.ctr-electronics.com/en/stable/docs/tuner/tuner-swerve/index.html
  */
 class CommandSwerveDrivetrain : public frc2::SubsystemBase, public TunerSwerveDrivetrain {
-    static constexpr units::second_t kSimLoopPeriod = 4_ms;
+    static inline const units::second_t kSimLoopPeriod = 4_ms;
     std::unique_ptr<frc::Notifier> m_simNotifier;
     units::second_t m_lastSimTime;
 
     /* Blue alliance sees forward as 0 degrees (toward red alliance wall) */
-    static constexpr frc::Rotation2d kBlueAlliancePerspectiveRotation{0_deg};
+    static inline const frc::Rotation2d kBlueAlliancePerspectiveRotation{0_deg};
     /* Red alliance sees forward as 180 degrees (toward blue alliance wall) */
-    static constexpr frc::Rotation2d kRedAlliancePerspectiveRotation{180_deg};
+    static inline const frc::Rotation2d kRedAlliancePerspectiveRotation{180_deg};
     /* Keep track if we've ever applied the operator perspective before or not */
     bool m_hasAppliedOperatorPerspective = false;
 

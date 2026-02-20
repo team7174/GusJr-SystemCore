@@ -18,40 +18,40 @@ class TunerConstants {
 
     // The steer motor uses any SwerveModule.SteerRequestType control request with the
     // output type specified by SwerveModuleConstants::SteerMotorClosedLoopOutput
-    static constexpr configs::Slot0Configs steerGains = configs::Slot0Configs{}
+    static inline const configs::Slot0Configs steerGains = configs::Slot0Configs{}
         .WithKP(100).WithKI(0).WithKD(0.5)
         .WithKS(0.1).WithKV(1.49).WithKA(0)
         .WithStaticFeedforwardSign(signals::StaticFeedforwardSignValue::UseClosedLoopSign);
     // When using closed-loop control, the drive motor uses the control
     // output type specified by SwerveModuleConstants::DriveMotorClosedLoopOutput
-    static constexpr configs::Slot0Configs driveGains = configs::Slot0Configs{}
+    static inline const configs::Slot0Configs driveGains = configs::Slot0Configs{}
         .WithKP(0.1).WithKI(0).WithKD(0)
         .WithKS(0).WithKV(0.124);
 
     // The closed-loop output type to use for the steer motors;
     // This affects the PID/FF gains for the steer motors
-    static constexpr swerve::ClosedLoopOutputType kSteerClosedLoopOutput = swerve::ClosedLoopOutputType::Voltage;
+    static inline const swerve::ClosedLoopOutputType kSteerClosedLoopOutput = swerve::ClosedLoopOutputType::Voltage;
     // The closed-loop output type to use for the drive motors;
     // This affects the PID/FF gains for the drive motors
-    static constexpr swerve::ClosedLoopOutputType kDriveClosedLoopOutput = swerve::ClosedLoopOutputType::Voltage;
+    static inline const swerve::ClosedLoopOutputType kDriveClosedLoopOutput = swerve::ClosedLoopOutputType::Voltage;
 
     // The type of motor used for the drive motor
-    static constexpr swerve::DriveMotorArrangement kDriveMotorType = swerve::DriveMotorArrangement::TalonFX_Integrated;
+    static inline const swerve::DriveMotorArrangement kDriveMotorType = swerve::DriveMotorArrangement::TalonFX_Integrated;
     // The type of motor used for the drive motor
-    static constexpr swerve::SteerMotorArrangement kSteerMotorType = swerve::SteerMotorArrangement::TalonFX_Integrated;
+    static inline const swerve::SteerMotorArrangement kSteerMotorType = swerve::SteerMotorArrangement::TalonFX_Integrated;
 
     // The remote sensor feedback type to use for the steer motors;
     // When not Pro-licensed, Fused*/Sync* automatically fall back to Remote*
-    static constexpr swerve::SteerFeedbackType kSteerFeedbackType = swerve::SteerFeedbackType::FusedCANcoder;
+    static inline const swerve::SteerFeedbackType kSteerFeedbackType = swerve::SteerFeedbackType::FusedCANcoder;
 
     // The stator current at which the wheels start to slip;
     // This needs to be tuned to your individual robot
-    static constexpr units::ampere_t kSlipCurrent = 120_A;
+    static inline const units::ampere_t kSlipCurrent = 120_A;
 
     // Initial configs for the drive and steer motors and the azimuth encoder; these cannot be null.
     // Some configs will be overwritten; check the `With*InitialConfigs()` API documentation.
-    static constexpr configs::TalonFXConfiguration driveInitialConfigs{};
-    static constexpr configs::TalonFXConfiguration steerInitialConfigs = configs::TalonFXConfiguration{}
+    static inline const configs::TalonFXConfiguration driveInitialConfigs{};
+    static inline const configs::TalonFXConfiguration steerInitialConfigs = configs::TalonFXConfiguration{}
         .WithCurrentLimits(
             configs::CurrentLimitsConfigs{}
                 // Swerve azimuth does not require much torque output, so we can set a relatively low
@@ -59,11 +59,11 @@ class TunerConstants {
                 .WithStatorCurrentLimit(60_A)
                 .WithStatorCurrentLimitEnable(true)
         );
-    static constexpr configs::CANcoderConfiguration encoderInitialConfigs{};
+    static inline const configs::CANcoderConfiguration encoderInitialConfigs{};
     // Configs for the Pigeon 2; leave this nullopt to skip applying Pigeon 2 configs
-    static constexpr std::optional<configs::Pigeon2Configuration> pigeonConfigs = std::nullopt;
+    static inline const std::optional<configs::Pigeon2Configuration> pigeonConfigs = std::nullopt;
 
-    static constexpr std::string_view kCANBusName = "";
+    static inline const std::string_view kCANBusName = "";
 
 public:
     // CAN bus that the devices are located on;
@@ -72,37 +72,37 @@ public:
 
     // Theoretical free speed (m/s) at 12 V applied output;
     // This needs to be tuned to your individual robot
-    static constexpr units::meters_per_second_t kSpeedAt12Volts = 5.14_mps;
+    static inline const units::meters_per_second_t kSpeedAt12Volts = 5.14_mps;
 
 private:
     // Every 1 rotation of the azimuth results in kCoupleRatio drive motor turns;
     // This may need to be tuned to your individual robot
-    static constexpr units::scalar_t kCoupleRatio = 0;
+    static inline const units::scalar_t kCoupleRatio = 0;
 
-    static constexpr units::scalar_t kDriveGearRatio = 6;
-    static constexpr units::scalar_t kSteerGearRatio = 12;
-    static constexpr units::inch_t kWheelRadius = 2_in;
+    static inline const units::scalar_t kDriveGearRatio = 6;
+    static inline const units::scalar_t kSteerGearRatio = 12;
+    static inline const units::inch_t kWheelRadius = 2_in;
 
-    static constexpr bool kInvertLeftSide = false;
-    static constexpr bool kInvertRightSide = true;
+    static inline const bool kInvertLeftSide = false;
+    static inline const bool kInvertRightSide = true;
 
-    static constexpr int kPigeonId = 9;
+    static inline const int kPigeonId = 9;
 
     // These are only used for simulation
-    static constexpr units::kilogram_square_meter_t kSteerInertia = 0.01_kg_sq_m;
-    static constexpr units::kilogram_square_meter_t kDriveInertia = 0.01_kg_sq_m;
+    static inline const units::kilogram_square_meter_t kSteerInertia = 0.01_kg_sq_m;
+    static inline const units::kilogram_square_meter_t kDriveInertia = 0.01_kg_sq_m;
     // Simulated voltage necessary to overcome friction
-    static constexpr units::volt_t kSteerFrictionVoltage = 0.2_V;
-    static constexpr units::volt_t kDriveFrictionVoltage = 0.2_V;
+    static inline const units::volt_t kSteerFrictionVoltage = 0.2_V;
+    static inline const units::volt_t kDriveFrictionVoltage = 0.2_V;
 
 public:
-    static constexpr swerve::SwerveDrivetrainConstants DrivetrainConstants = swerve::SwerveDrivetrainConstants{}
+    static inline const swerve::SwerveDrivetrainConstants DrivetrainConstants = swerve::SwerveDrivetrainConstants{}
             .WithCANBusName(kCANBusName)
             .WithPigeon2Id(kPigeonId)
             .WithPigeon2Configs(pigeonConfigs);
 
 private:
-    static constexpr swerve::SwerveModuleConstantsFactory ConstantCreator =
+    static inline const swerve::SwerveModuleConstantsFactory ConstantCreator =
         swerve::SwerveModuleConstantsFactory<configs::TalonFXConfiguration, configs::TalonFXConfiguration, configs::CANcoderConfiguration>{}
             .WithDriveMotorGearRatio(kDriveGearRatio)
             .WithSteerMotorGearRatio(kSteerGearRatio)
@@ -127,61 +127,61 @@ private:
 
 
     // Front Left
-    static constexpr int kFrontLeftDriveMotorId = 40;
-    static constexpr int kFrontLeftSteerMotorId = 60;
-    static constexpr int kFrontLeftEncoderId = 42;
-    static constexpr units::turn_t kFrontLeftEncoderOffset = -0.218994140625_tr;
-    static constexpr bool kFrontLeftSteerMotorInverted = true;
-    static constexpr bool kFrontLeftEncoderInverted = false;
+    static inline const int kFrontLeftDriveMotorId = 40;
+    static inline const int kFrontLeftSteerMotorId = 60;
+    static inline const int kFrontLeftEncoderId = 42;
+    static inline const units::turn_t kFrontLeftEncoderOffset = -0.218994140625_tr;
+    static inline const bool kFrontLeftSteerMotorInverted = true;
+    static inline const bool kFrontLeftEncoderInverted = false;
 
-    static constexpr units::inch_t kFrontLeftXPos = 4_in;
-    static constexpr units::inch_t kFrontLeftYPos = 4_in;
+    static inline const units::inch_t kFrontLeftXPos = 4_in;
+    static inline const units::inch_t kFrontLeftYPos = 4_in;
 
     // Front Right
-    static constexpr int kFrontRightDriveMotorId = 30;
-    static constexpr int kFrontRightSteerMotorId = 31;
-    static constexpr int kFrontRightEncoderId = 32;
-    static constexpr units::turn_t kFrontRightEncoderOffset = 0.44140625_tr;
-    static constexpr bool kFrontRightSteerMotorInverted = true;
-    static constexpr bool kFrontRightEncoderInverted = false;
+    static inline const int kFrontRightDriveMotorId = 30;
+    static inline const int kFrontRightSteerMotorId = 31;
+    static inline const int kFrontRightEncoderId = 32;
+    static inline const units::turn_t kFrontRightEncoderOffset = 0.44140625_tr;
+    static inline const bool kFrontRightSteerMotorInverted = true;
+    static inline const bool kFrontRightEncoderInverted = false;
 
-    static constexpr units::inch_t kFrontRightXPos = 4_in;
-    static constexpr units::inch_t kFrontRightYPos = -4_in;
+    static inline const units::inch_t kFrontRightXPos = 4_in;
+    static inline const units::inch_t kFrontRightYPos = -4_in;
 
     // Back Left
-    static constexpr int kBackLeftDriveMotorId = 20;
-    static constexpr int kBackLeftSteerMotorId = 21;
-    static constexpr int kBackLeftEncoderId = 22;
-    static constexpr units::turn_t kBackLeftEncoderOffset = 0.26123046875_tr;
-    static constexpr bool kBackLeftSteerMotorInverted = true;
-    static constexpr bool kBackLeftEncoderInverted = false;
+    static inline const int kBackLeftDriveMotorId = 20;
+    static inline const int kBackLeftSteerMotorId = 21;
+    static inline const int kBackLeftEncoderId = 22;
+    static inline const units::turn_t kBackLeftEncoderOffset = 0.26123046875_tr;
+    static inline const bool kBackLeftSteerMotorInverted = true;
+    static inline const bool kBackLeftEncoderInverted = false;
 
-    static constexpr units::inch_t kBackLeftXPos = -4_in;
-    static constexpr units::inch_t kBackLeftYPos = 4_in;
+    static inline const units::inch_t kBackLeftXPos = -4_in;
+    static inline const units::inch_t kBackLeftYPos = 4_in;
 
     // Back Right
-    static constexpr int kBackRightDriveMotorId = 10;
-    static constexpr int kBackRightSteerMotorId = 11;
-    static constexpr int kBackRightEncoderId = 12;
-    static constexpr units::turn_t kBackRightEncoderOffset = 0.373779296875_tr;
-    static constexpr bool kBackRightSteerMotorInverted = true;
-    static constexpr bool kBackRightEncoderInverted = false;
+    static inline const int kBackRightDriveMotorId = 10;
+    static inline const int kBackRightSteerMotorId = 11;
+    static inline const int kBackRightEncoderId = 12;
+    static inline const units::turn_t kBackRightEncoderOffset = 0.373779296875_tr;
+    static inline const bool kBackRightSteerMotorInverted = true;
+    static inline const bool kBackRightEncoderInverted = false;
 
-    static constexpr units::inch_t kBackRightXPos = -4_in;
-    static constexpr units::inch_t kBackRightYPos = -4_in;
+    static inline const units::inch_t kBackRightXPos = -4_in;
+    static inline const units::inch_t kBackRightYPos = -4_in;
 
 
 public:
-    static constexpr swerve::SwerveModuleConstants FrontLeft = ConstantCreator.CreateModuleConstants(
+    static inline const swerve::SwerveModuleConstants FrontLeft = ConstantCreator.CreateModuleConstants(
             kFrontLeftSteerMotorId, kFrontLeftDriveMotorId, kFrontLeftEncoderId, kFrontLeftEncoderOffset,
             kFrontLeftXPos, kFrontLeftYPos, kInvertLeftSide, kFrontLeftSteerMotorInverted, kFrontLeftEncoderInverted);
-    static constexpr swerve::SwerveModuleConstants FrontRight = ConstantCreator.CreateModuleConstants(
+    static inline const swerve::SwerveModuleConstants FrontRight = ConstantCreator.CreateModuleConstants(
             kFrontRightSteerMotorId, kFrontRightDriveMotorId, kFrontRightEncoderId, kFrontRightEncoderOffset,
             kFrontRightXPos, kFrontRightYPos, kInvertRightSide, kFrontRightSteerMotorInverted, kFrontRightEncoderInverted);
-    static constexpr swerve::SwerveModuleConstants BackLeft = ConstantCreator.CreateModuleConstants(
+    static inline const swerve::SwerveModuleConstants BackLeft = ConstantCreator.CreateModuleConstants(
             kBackLeftSteerMotorId, kBackLeftDriveMotorId, kBackLeftEncoderId, kBackLeftEncoderOffset,
             kBackLeftXPos, kBackLeftYPos, kInvertLeftSide, kBackLeftSteerMotorInverted, kBackLeftEncoderInverted);
-    static constexpr swerve::SwerveModuleConstants BackRight = ConstantCreator.CreateModuleConstants(
+    static inline const swerve::SwerveModuleConstants BackRight = ConstantCreator.CreateModuleConstants(
             kBackRightSteerMotorId, kBackRightDriveMotorId, kBackRightEncoderId, kBackRightEncoderOffset,
             kBackRightXPos, kBackRightYPos, kInvertRightSide, kBackRightSteerMotorInverted, kBackRightEncoderInverted);
 
@@ -269,4 +269,4 @@ public:
             odometryStandardDeviation, visionStandardDeviation, modules...
         }
     {}
-};
+};
