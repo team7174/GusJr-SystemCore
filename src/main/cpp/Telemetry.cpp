@@ -25,11 +25,11 @@ void Telemetry::Telemeterize(subsystems::CommandSwerveDrivetrain::SwerveDriveSta
     driveOdometryFrequency.Set(1.0 / state.OdometryPeriod.value());
 
     /* Also write to log file */
-    SignalLogger::WriteStruct("DriveState/Pose", state.Pose);
-    SignalLogger::WriteStruct("DriveState/Speeds", state.Speeds);
-    SignalLogger::WriteStructArray<frc::SwerveModuleState>("DriveState/ModuleStates", state.ModuleStates);
-    SignalLogger::WriteStructArray<frc::SwerveModuleState>("DriveState/ModuleTargets", state.ModuleTargets);
-    SignalLogger::WriteStructArray<frc::SwerveModulePosition>("DriveState/ModulePositions", state.ModulePositions);
+    // SignalLogger::WriteStruct("DriveState/Pose", state.Pose);
+    // SignalLogger::WriteStruct("DriveState/Speeds", state.Speeds);
+    // SignalLogger::WriteStructArray<frc::SwerveModuleState>("DriveState/ModuleStates", state.ModuleStates);
+    // SignalLogger::WriteStructArray<frc::SwerveModuleState>("DriveState/ModuleTargets", state.ModuleTargets);
+    // SignalLogger::WriteStructArray<frc::SwerveModulePosition>("DriveState/ModulePositions", state.ModulePositions);
     SignalLogger::WriteValue("DriveState/OdometryPeriod", state.OdometryPeriod);
 
     /* Telemeterize the pose to a Field2d */

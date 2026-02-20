@@ -57,7 +57,7 @@ frc2::CommandPtr RobotContainer::GetAutonomousCommand()
     return frc2::cmd::Sequence(
         // Reset our field centric heading to match the robot
         // facing away from our alliance station wall (0 deg).
-        drivetrain.RunOnce([this] { drivetrain.SeedFieldCentric(frc::Rotation2d{0_deg}); }),
+        drivetrain.RunOnce([this] { drivetrain.SeedFieldCentric(); }),
         // Then slowly drive forward (away from us) for 5 seconds.
         drivetrain.ApplyRequest([this]() -> auto&& {
             return drive.WithVelocityX(0.5_mps)

@@ -289,7 +289,7 @@ public:
      * \param timestamp The timestamp of the pose in seconds.
      * \returns The pose at the given timestamp (or std::nullopt if the buffer is empty).
      */
-    std::optional<frc::Pose2d> SamplePoseAt(units::second_t timestamp) const override
+    std::optional<frc::Pose2d> SamplePoseAt(units::second_t timestamp) override
     {
         return _drivetrain.SamplePoseAt(utils::FPGAToCurrentTime(timestamp));
     }
